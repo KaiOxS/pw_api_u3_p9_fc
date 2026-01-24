@@ -16,13 +16,17 @@ import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import uce.edu.web.api.matricula.application.EstudianteService;
+import uce.edu.web.api.matricula.application.HijoService;
 import uce.edu.web.api.matricula.domain.Estudiante;
+import uce.edu.web.api.matricula.domain.Hijo;
 
 @Path("/estudiantes")
 public class EstudianteResource {
 
     @Inject
     private EstudianteService estudianteService;
+    @Inject
+    private HijoService hijoService;
 
     @GET
     @Path("")
@@ -42,7 +46,8 @@ public class EstudianteResource {
 
     @POST
     @Path("")
-    @Consumes
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response guardar(Estudiante estu) {
         this.estudianteService.crear(estu);
         return Response.status(Response.Status.CREATED).entity(estu).build();
@@ -50,17 +55,19 @@ public class EstudianteResource {
 
     @PUT
     @Path("/{id}")
-    public void actualizar(@PathParam("id") Integer id, Estudiante estu) {
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response actualizar(@PathParam("id") Integer id, Estudiante estu) {
         this.estudianteService.actualizar(id, estu);
+        return Response.status(209).entity("Actualizado").build();
 
     }
 
     @PATCH
     @Path("/{id}")
-    public Response actualizarParcial(@PathParam("id") Integer id, Estudiante estu) {
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void actualizarParcial(@PathParam("id") Integer id, Estudiante estu) {
         this.estudianteService.actualizarParcial(id, estu);
-        return Response.status(209).entity("Actualizado parcialmente").build();
-
     }
 
     @DELETE
@@ -77,9 +84,15 @@ public class EstudianteResource {
 
     @GET
     @Path("/provincia/genero")
+    @Produces(MediaType.APPLICATION_JSON)
     public List<Estudiante> buscarPorGeneroProvincia(@QueryParam("provincia") String provincia, @QueryParam("genero") String genero) {
         System.out.println("LISTAR POR PROVINCIA Y GENERO");
         return this.estudianteService.buscarPorGeneroProvincia(provincia, genero);
     }
 
+    @GET
+    @Path("/{id}/hijos")
+    public List<Hijo> buscarPorIdEstudiante(@PathParam("id") Integer id) {
+        return this.hijoService.buscarPorIdEstudiante(id);
+    }
 }

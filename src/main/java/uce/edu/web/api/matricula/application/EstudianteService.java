@@ -5,6 +5,7 @@ import java.util.List;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import uce.edu.web.api.matricula.application.representation.EstudianteRepresentation;
 import uce.edu.web.api.matricula.domain.Estudiante;
 import uce.edu.web.api.matricula.infraestructure.EstudianteRepository;
 
