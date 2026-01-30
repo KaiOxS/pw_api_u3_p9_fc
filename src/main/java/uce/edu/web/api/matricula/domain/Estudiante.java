@@ -1,6 +1,6 @@
 package uce.edu.web.api.matricula.domain;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
@@ -26,7 +26,7 @@ public class Estudiante extends PanacheEntityBase {
     private Integer id;
     private String nombre;
     private String apellido;
-    private LocalDateTime fechaNacimiento;
+    private LocalDate fechaNacimiento;
     private String provincia;
     private String genero;
 
@@ -54,11 +54,11 @@ public class Estudiante extends PanacheEntityBase {
         this.apellido = apellido;
     }
 
-    public LocalDateTime getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(LocalDateTime fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

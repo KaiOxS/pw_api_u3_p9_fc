@@ -1,6 +1,6 @@
 package uce.edu.web.api.matricula.application.representation;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 public class EstudianteRepresentation {
@@ -8,7 +8,7 @@ public class EstudianteRepresentation {
     private Integer id;
     private String nombre;
     private String apellido;
-    private LocalDateTime fechaNacimiento;
+    private LocalDate fechaNacimiento;
     private String provincia;
     private String genero;
 
@@ -36,11 +36,11 @@ public class EstudianteRepresentation {
         this.apellido = apellido;
     }
 
-    public LocalDateTime getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(LocalDateTime fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
