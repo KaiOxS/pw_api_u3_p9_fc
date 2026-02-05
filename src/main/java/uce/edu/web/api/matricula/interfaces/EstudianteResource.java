@@ -37,7 +37,7 @@ public class EstudianteResource {
     @GET
     @Path("")
     @Produces(MediaType.APPLICATION_JSON)
-    @RolesAllowed("admin")
+    @RolesAllowed({"admin", "user", "docente"})
     public List<EstudianteRepresentation> listarTodos() {
         List<EstudianteRepresentation> test = this.estudianteService.listarTodos();
 
@@ -52,6 +52,7 @@ public class EstudianteResource {
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @RolesAllowed("admin")
     //@PermitAll
     public EstudianteRepresentation consultarPorId(@PathParam("id") Integer iden) {
